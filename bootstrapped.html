@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ conf('General', 'site_name') }} - {{ window_title }}</title>
+	<link rel="stylesheet" type="text/css" href="/layouts/bootstrapped/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/layouts/bootstrapped/style.css" />
+	{! admin/head !}
+	{{ head|none }}
+</head>
+<body{% if User::require_admin () %} class="admin"{% end %}>
+
+<div class="topbar">
+	<div class="fill">
+		<div class="container">
+			<a class="brand" href="/">&#10070; {{ conf('General', 'site_name') }}</a>
+			<div class="nav">
+				{! navigation/top !}
+			</div>
+			<div class="pull-right">
+				{% if User::is_valid () %}
+				<p>
+					<a href="/user"><img src="http://www.gravatar.com/avatar/{{ user.email|trim|strtolower|md5 }}?s=17&d=mm" class="avatar" /> {{ user.name }}</a>
+					&nbsp;|&nbsp;
+					<a href="/user/logout">{" Log Out "}</a>
+				</p>
+				{% else %}
+				<form action="/user/login" method="post" class="pull-right">
+					<input type="hidden" name="redirect" value="/{{ id }}" />
+					<input class="input-small" type="email" name="username" placeholder="Email" />
+					<input class="input-small" type="password" name="password" placeholder="Password" />
+					<button class="btn" type="submit">{" Sign in "}</button>
+				</form>
+				{% end %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+
+{% if id == 'index' %}
+	<div class="hero-unit">
+		<h1>Bootstrapped</h1>
+		<p>A bootstrap-powered theme for app developers.</p>
+		<p><a href="http://github.com/jbroadway/bootstrapped" class="btn primary large">Learn more &raquo;</a></p>
+	</div>
+{% end %}
+
+	<div class="content">
+{% if title != '' %}
+		<div class="page-header">
+			<h1>{{ title }}</h1>
+		</div>
+{% end %}
+		<div class="row">
+			<div class="span10">
+{{ body|none }}
+			</div>
+			<div class="span5">
+{! blocks/sidebar-right !}
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<p>&copy; {{ date ('Y') }} {{ conf('General', 'site_name') }}<br />
+		{"Powered by"} <a href="http://www.elefantcms.com/">Elefant CMS</a></p>
+	</footer>
+
+</div>
+
+{{ tail|none }}
+</body>
+</html>

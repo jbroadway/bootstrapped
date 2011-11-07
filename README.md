@@ -18,4 +18,4 @@ framework and toolkit, ideal for SaaS and other web application development.
 
 Homepage:
 
-![](http://github.com/jbroadway/montreal/raw/master/bootstrapped/screenshot-index.png)
+![](http://github.com/jbroadway/bootstrapped/raw/master/bootstrapped/screenshot-index.png)

@@ -19,7 +19,7 @@
 			<div class="pull-right">
 				{% if User::is_valid () %}
 				<p>
-					<a href="/user"><img src="http://www.gravatar.com/avatar/{{ user.email|trim|strtolower|md5 }}?s=17&d=mm" class="avatar" /> {{ user.name }}</a>
+					<a href="/user"><img src="http://www.gravatar.com/avatar/{{ User::val('email')|trim|strtolower|md5 }}?s=17&d=mm" class="avatar" /> {{ User::val('name') }}</a>
 					&nbsp;|&nbsp;
 					<a href="/user/logout">{" Log Out "}</a>
 				</p>
